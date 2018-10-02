@@ -12,7 +12,7 @@ namespace KlausurtrainerPlugin.ExerciseValidation
         /// <summary>
         /// The maximum number of characters allowed for the name of an exercise.
         /// </summary>
-        public const int MAX_NAME_LENGTH = 32;
+        public const int MAX_NAME_LENGTH = 128;
 
         /// <summary>
         /// Check if the names of a given set is valid.
