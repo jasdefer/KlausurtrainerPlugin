@@ -7,6 +7,8 @@
     <Description>This project contains interfaces, basic implementations and general definitions used for the Klausurtrainer.</Description>
     <PackageProjectUrl>https://github.com/jasdefer/KlausurtrainerPlugin</PackageProjectUrl>
     <NeutralLanguage>en</NeutralLanguage>
+    <Version>1.0.1</Version>
+    <PackageReleaseNotes>Added the feature to set the values of an exercise externally.</PackageReleaseNotes>
   </PropertyGroup>
 
 </Project>

@@ -58,6 +58,11 @@ namespace KlausurtrainerPlugin
             return Values;
         }
 
+        public void SetValues(T values)
+        {
+            Values = values;
+        }
+
         /// <summary>
         /// Instantiates the exercise for a given seed.
         /// The random gets instantiated with the hashcode of the lower invariant of the given seed.
