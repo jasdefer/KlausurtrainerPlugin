@@ -4,6 +4,7 @@
     {
         Correct,
         Incorrect,
-        SyntaxError
+        SyntaxError,
+        NotValidated
     }
 }
