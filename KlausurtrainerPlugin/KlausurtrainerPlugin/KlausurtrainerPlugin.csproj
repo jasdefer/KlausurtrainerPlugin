@@ -7,8 +7,8 @@
     <Description>This project contains interfaces, basic implementations and general definitions used for the Klausurtrainer.</Description>
     <PackageProjectUrl>https://github.com/jasdefer/KlausurtrainerPlugin</PackageProjectUrl>
     <NeutralLanguage>en</NeutralLanguage>
-    <Version>1.0.2</Version>
-    <PackageReleaseNotes>Fix maximum exercise name length.</PackageReleaseNotes>
+    <Version>1.0.3</Version>
+    <PackageReleaseNotes>Added an answer helper. It calculates the answer status based on multiple answer cell statuses.</PackageReleaseNotes>
   </PropertyGroup>
 
 </Project>
