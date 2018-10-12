@@ -27,7 +27,12 @@ namespace KlausurtrainerPlugin.ExerciseValidation
                     for (int i = 0; i < ITERATIONS; i++)
                     {
                         var error = await GetError(exercise, i.ToString());
-                        if (!string.IsNullOrEmpty(error)) errors.Add(error);
+                        if (!string.IsNullOrEmpty(error))
+                        {
+                            errors.Add(error);
+                            //Cancel the test, to prevent long waiting times
+                            i = ITERATIONS;
+                        }
                     }
                 }
                 catch (Exception e)
