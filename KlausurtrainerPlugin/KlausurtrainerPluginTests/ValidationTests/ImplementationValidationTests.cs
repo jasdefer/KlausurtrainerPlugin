@@ -6,30 +6,30 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace KlausurtrainerPluginTests.ValidationTests
 {
     [TestClass]
-    public class NameValidationTests
+    public class ImplementationValidationTests
     {
         [TestMethod]
         public void ValidExercise()
         {
             var exercises = new IExerciseDefinition[]
             {
-                new ValidExercise()
+                new ValidExercise(),
+                new ValidExercise(),
             };
 
-            var errors = NameValidation.GetErrors(exercises);
+            var errors = ImplementationValidation.GetErrors(exercises);
             Assert.AreEqual(0, errors.Count, string.Join(",", errors));
         }
 
         [TestMethod]
-        public void DuplicateNames()
+        public void Exception()
         {
             var exercises = new IExerciseDefinition[]
             {
-                new ValidExercise(),
-                new ValidExercise()
+                new ExceptionExercise(),
             };
 
-            var errors = NameValidation.GetErrors(exercises);
+            var errors = ImplementationValidation.GetErrors(exercises);
             Assert.AreEqual(1, errors.Count, string.Join(",", errors));
         }
     }

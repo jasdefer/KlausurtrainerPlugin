@@ -2,35 +2,35 @@
 using KlausurtrainerPlugin.ExerciseValidation;
 using KlausurtrainerPluginTests.ValidationTests.Exercises;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Threading.Tasks;
 
 namespace KlausurtrainerPluginTests.ValidationTests
 {
     [TestClass]
-    public class NameValidationTests
+    public class TimeValidationTests
     {
         [TestMethod]
-        public void ValidExercise()
+        public async Task ValidExercise()
         {
             var exercises = new IExerciseDefinition[]
             {
                 new ValidExercise()
             };
 
-            var errors = NameValidation.GetErrors(exercises);
+            var errors = await TimeValidation.GetErrors(exercises);
             Assert.AreEqual(0, errors.Count, string.Join(",", errors));
         }
 
         [TestMethod]
-        public void DuplicateNames()
+        public async Task SlowExercise()
         {
             var exercises = new IExerciseDefinition[]
             {
-                new ValidExercise(),
-                new ValidExercise()
+                new LongCalculationExercise(),
             };
 
-            var errors = NameValidation.GetErrors(exercises);
-            Assert.AreEqual(1, errors.Count, string.Join(",", errors));
+            var errors = await TimeValidation.GetErrors(exercises);
+            Assert.AreEqual(TimeValidation.ITERATIONS, errors.Count, string.Join(",", errors));
         }
     }
 }
