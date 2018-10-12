@@ -30,7 +30,7 @@ namespace KlausurtrainerPluginTests.ValidationTests
             };
 
             var errors = await TimeValidation.GetErrors(exercises);
-            Assert.AreEqual(TimeValidation.ITERATIONS, errors.Count, string.Join(",", errors));
+            Assert.AreEqual(1, errors.Count, string.Join(",", errors));
         }
     }
 }

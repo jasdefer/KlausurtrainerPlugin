@@ -3,6 +3,8 @@ using KlausurtrainerPlugin.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace KlausurtrainerPlugin
 {
@@ -71,11 +73,20 @@ namespace KlausurtrainerPlugin
         /// <param name="seed"></param>
         public void Instantiate(string seed)
         {
-            Rnd = new Random(seed.ToLowerInvariant().GetHashCode());
+            Rnd = new Random(Hash(seed));
             AnswerCells = new Dictionary<Cell, AnswerCell>();
             Solutions = new Dictionary<Cell, IResult>();
             SetValues();
             DefineAnswerCells();
+        }
+
+        private int Hash(string seed)
+        {
+            byte[] bytes = Encoding.UTF8.GetBytes(seed);
+            var sha = new SHA256Managed();
+            var hashedBytes = sha.ComputeHash(bytes);
+            int hash = BitConverter.ToInt32(hashedBytes, 0);
+            return hash;
         }
 
         protected abstract void SetValues();
