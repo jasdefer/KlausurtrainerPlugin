@@ -102,7 +102,10 @@ namespace KlausurtrainerPlugin
         /// <param name="values"></param>
         public void SetValues(T values)
         {
+            AnswerCells = new Dictionary<Cell, AnswerCell>();
+            Solutions = new Dictionary<Cell, IResult>();
             Values = values;
+            DefineAnswerCells();
         }
 
         /// <summary>
