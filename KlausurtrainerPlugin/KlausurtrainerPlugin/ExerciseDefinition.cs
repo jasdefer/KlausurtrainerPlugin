@@ -32,9 +32,12 @@ namespace KlausurtrainerPlugin
             Dictionary<Cell, AnswerCellStatus> status = new Dictionary<Cell, AnswerCellStatus>();
             foreach (var item in inputs)
             {
-                bool success = Solutions.TryGetValue(item.Key, out IResult result);
-                if (!success) throw new Exception($"No answer cell is defined for {item.Key} in {Name}.");
-                status.Add(item.Key, result.Validate(item.Value));
+                if (AnswerCells[item.Key].InputType != InputTypes.Label)
+                {
+                    bool success = Solutions.TryGetValue(item.Key, out IResult result);
+                    if (!success) throw new Exception($"No answer cell is defined for {item.Key} in {Name}.");
+                    status.Add(item.Key, result.Validate(item.Value));
+                }
             }
             return status;
         }
