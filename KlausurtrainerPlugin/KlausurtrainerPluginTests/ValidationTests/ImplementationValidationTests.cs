@@ -32,5 +32,17 @@ namespace KlausurtrainerPluginTests.ValidationTests
             var errors = ImplementationValidation.GetErrors(exercises);
             Assert.AreEqual(1, errors.Count, string.Join(",", errors));
         }
+
+        [TestMethod]
+        public void ExerciseWithLabelTest()
+        {
+            var exercises = new IExerciseDefinition[]
+            {
+                new ExerciseWithLabel(),
+            };
+
+            var errors = ImplementationValidation.GetErrors(exercises);
+            Assert.AreEqual(0, errors.Count, string.Join(",", errors));
+        }
     }
 }
