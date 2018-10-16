@@ -349,7 +349,7 @@ namespace KlausurtrainerPlugin
         /// <param name="column">The column of the answer cell</param>
         /// <param name="expectedValue">The expected value of the answer cell</param>
         /// <param name="epsilon">The tolerance range for the input. See the decimal result for a detailed description</param>
-        protected void AddDecimalOrNullSolution(int row, int column, double? expectedValue, decimal epsilon = 0)
+        protected void AddDoubleOrNullSolution(int row, int column, double? expectedValue, decimal epsilon = 0)
         {
             decimal? converted;
             if (expectedValue.HasValue)
