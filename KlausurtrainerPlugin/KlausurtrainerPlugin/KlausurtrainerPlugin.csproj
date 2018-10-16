@@ -7,8 +7,8 @@
     <Description>This project contains interfaces, basic implementations and general definitions used for the Klausurtrainer.</Description>
     <PackageProjectUrl>https://github.com/jasdefer/KlausurtrainerPlugin</PackageProjectUrl>
     <NeutralLanguage>en</NeutralLanguage>
-    <Version>1.0.7.1</Version>
-    <PackageReleaseNotes>Exercises will update their answer cells when the values are set externally</PackageReleaseNotes>
+    <Version>1.0.7.2</Version>
+    <PackageReleaseNotes>Fixed ambiguity between add decimal solution calls.</PackageReleaseNotes>
   <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
   </PropertyGroup>
 
