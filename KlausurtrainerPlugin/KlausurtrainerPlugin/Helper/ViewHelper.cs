@@ -2,8 +2,16 @@
 
 namespace KlausurtrainerPlugin.Helper
 {
+    /// <summary>
+    /// Helps converting exercise properties to bootstrap 4 friendly strings.
+    /// </summary>
     public static class ViewHelper
     {
+        /// <summary>
+        /// Convert an answer cell status to the bootstrap 4 equivalent for a form.
+        /// </summary>
+        /// <param name="status">The status of an answer cell</param>
+        /// <returns>Returns a bootstrap 4 string, which sets the correct form class.</returns>
         public static string ConvertStatus(AnswerCellStatus? status)
         {
             switch (status)
@@ -21,6 +29,11 @@ namespace KlausurtrainerPlugin.Helper
             }
         }
 
+        /// <summary>
+        /// Convert an answer cell status to the bootstrap 4 equivalent for the background.
+        /// </summary>
+        /// <param name="status">The status of an answer cell</param>
+        /// <returns>Returns a bootstrap 4 string, which sets the correct background.</returns>
         public static string ConvertStatusToBackground(AnswerCellStatus? status)
         {
             switch (status)
@@ -38,6 +51,11 @@ namespace KlausurtrainerPlugin.Helper
             }
         }
 
+        /// <summary>
+        /// Convert an answer cell status to the bootstrap 4 equivalent for the border.
+        /// </summary>
+        /// <param name="status">The status of an answer cell</param>
+        /// <returns>Returns a bootstrap 4 string, which sets the correct border.</returns>
         public static string ConvertStatusToBorder(AnswerCellStatus? status)
         {
             switch (status)

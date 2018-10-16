@@ -26,12 +26,12 @@ namespace KlausurtrainerPlugin
         string[] GetExerciseDescription();
 
         /// <summary>
-        /// The order of the exercise within the course
+        /// The order of the exercise within the chapter.
         /// </summary>
         int Order { get; }
 
         /// <summary>
-        /// The chapter of this exercise in the course
+        /// The chapter of this exercise in the course. The chapters are ordered alphabetically.
         /// </summary>
         string Chapter { get; }
 
@@ -41,18 +41,18 @@ namespace KlausurtrainerPlugin
         Dictionary<Cell, AnswerCell> AnswerCells { get; }
 
         /// <summary>
-        /// Get the exercise values which change with the seed. The <paramref name="Instantiate"/> method will always be called before this method. 
+        /// Get the exercise values which change with the seed. The Instantiate method will always be called before this method. 
         /// </summary>
         object GetValues();
 
         /// <summary>
-        /// Get the expected solutions for this exercise which change with the seed. The <paramref name="Instantiate"/> method will always be called before this method. 
+        /// Get the expected solutions for this exercise which change with the seed. The Instantiate method will always be called before this method. 
         /// </summary>
         /// <returns></returns>
         Dictionary<Cell, string> GetExpectedSolutions();
 
         /// <summary>
-        /// Get the state of an answer for each answer cell depending on the current seed. The <paramref name="Instantiate"/> method will always be called before this method. 
+        /// Get the state of an answer for each answer cell depending on the current seed. The Instantiate method will always be called before this method. 
         /// </summary>
         /// <param name="inputs">The answer which is validated.</param>
         Dictionary<Cell, AnswerCellStatus> GetAnswerDetails(Dictionary<Cell, string> inputs);
