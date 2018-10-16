@@ -2,7 +2,6 @@
 using KlausurtrainerPlugin.Enum;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -10,35 +9,69 @@ namespace KlausurtrainerPlugin
 {
     public abstract class ExerciseDefinition<T> : IExerciseDefinition
     {
+        /// <summary>
+        /// The name of the exercise. It must be unique in a course.
+        /// </summary>
         public abstract string Name { get; }
 
+        /// <summary>
+        /// The name of the view file for this exercise. The view is a *.cshtml or *.html file
+        /// </summary>
         public abstract string FileName { get; }
 
+
+        /// <summary>
+        /// The chapter of this exercise in the course. The chapters are ordered alphabetically.
+        /// </summary>
         public virtual string Chapter => string.Empty;
 
+        /// <summary>
+        /// The order of the exercise within the chapter.
+        /// </summary>
         public virtual int Order => 0;
 
+        /// <summary>
+        /// The values for this exercise, which are of the generic type.
+        /// </summary>
         protected T Values { get; set; }
 
+        /// <summary>
+        /// This Random object can be used for generating random numbers. It is seeded with a constant value for each student.
+        /// </summary>
         protected Random Rnd { get; set; }
 
+        /// <summary>
+        /// Get the answer cells to inform the user where what kind of answer is expected.
+        /// </summary>
         public Dictionary<Cell, AnswerCell> AnswerCells { get; protected set; }
 
+        /// <summary>
+        /// Contains the collection of results with the corresponding expected solutions for each answer cell.
+        /// </summary>
         protected Dictionary<Cell, IResult> Solutions { get; set; }
 
+        /// <summary>
+        /// Validate a given input and calculates the answer cell statuses for each answer cell of the defined solution.
+        /// </summary>
         public Dictionary<Cell, AnswerCellStatus> GetAnswerDetails(Dictionary<Cell, string> inputs)
         {
             GenerateSolutions();
             Dictionary<Cell, AnswerCellStatus> status = new Dictionary<Cell, AnswerCellStatus>();
             foreach (var item in inputs)
             {
-                bool success = Solutions.TryGetValue(item.Key, out IResult result);
-                if (!success) throw new Exception($"No answer cell is defined for {item.Key} in {Name}.");
-                status.Add(item.Key, result.Validate(item.Value));
+                if (AnswerCells[item.Key].InputType != InputTypes.Label)
+                {
+                    bool success = Solutions.TryGetValue(item.Key, out IResult result);
+                    if (!success) throw new Exception($"No answer cell is defined for {item.Key} in {Name}.");
+                    status.Add(item.Key, result.Validate(item.Value));
+                }
             }
             return status;
         }
 
+        /// <summary>
+        /// A brief description of the exercise available for the course instructor.
+        /// </summary>
         public virtual string[] GetExerciseDescription()
         {
             return new string[0];
@@ -55,11 +88,18 @@ namespace KlausurtrainerPlugin
             return solutions;
         }
 
+        /// <summary>
+        /// Get the exercise values as an object.
+        /// </summary>
         public object GetValues()
         {
             return Values;
         }
 
+        /// <summary>
+        /// Set the exercise values externally.
+        /// </summary>
+        /// <param name="values"></param>
         public void SetValues(T values)
         {
             Values = values;
@@ -80,6 +120,9 @@ namespace KlausurtrainerPlugin
             DefineAnswerCells();
         }
 
+        /// <summary>
+        /// Converts the string seed to an integer seed.
+        /// </summary>
         private int Hash(string seed)
         {
             byte[] bytes = Encoding.UTF8.GetBytes(seed);
@@ -89,8 +132,19 @@ namespace KlausurtrainerPlugin
             return hash;
         }
 
+        /// <summary>
+        /// Calcualte the exercise values.
+        /// </summary>
         protected abstract void SetValues();
+
+        /// <summary>
+        /// Calculate the expected solutions.
+        /// </summary>
         protected abstract void GenerateSolutions();
+
+        /// <summary>
+        /// Define what kind of answer cells are expected.
+        /// </summary>
         protected abstract void DefineAnswerCells();
 
         /// <summary>
@@ -99,6 +153,7 @@ namespace KlausurtrainerPlugin
         /// <param name="inputType">The input type of the answer cell</param>
         /// <param name="row">The row of the answer cell</param>
         /// <param name="column">The column of the answer cell</param>
+        /// <param name="options">Add an array of strings, if the input type is multiple choice. Those are the options displayed for the multiple choice answer cell.</param>
         /// <param name="label">The label of this answer cell. Default value is null: No label will be displayed</param>
         protected void DefineAnswerCell(InputTypes inputType, int row, int column, string label = null, string[] options = null)
         {
