@@ -298,7 +298,7 @@ namespace KlausurtrainerPlugin
         /// <param name="column">The column of the answer cell</param>
         /// <param name="expectedValue">The expected value of the answer cell</param>
         /// <param name="epsilon">The tolerance range for the input. See the decimal result for a detailed description</param>
-        protected void AddDecimalSolution(int row, int column, double expectedValue, decimal epsilon = 0)
+        protected void AddDoubleSolution(int row, int column, double expectedValue, decimal epsilon = 0)
         {
             AddDecimalSolution(row, column, Convert.ToDecimal(expectedValue), epsilon);
         }
@@ -310,7 +310,7 @@ namespace KlausurtrainerPlugin
         /// <param name="column">The column of the answer cell</param>
         /// <param name="expectedValue">The expected value of the answer cell</param>
         /// <param name="digits">The amount of digits which are expected behind the comma. The epsilon for a 3 digits is 0.0005.</param>
-        protected void AddRoundedDecimalSolution(int row, int column, double expectedValue, int digits = 3)
+        protected void AddRoundedDoubleSolution(int row, int column, double expectedValue, int digits = 3)
         {
             AddRoundedDecimalSolution(row, column, Convert.ToDecimal(expectedValue), digits);
         }
