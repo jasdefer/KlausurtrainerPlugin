@@ -295,10 +295,67 @@ namespace KlausurtrainerPlugin
         /// <param name="column">The column of the answer cell</param>
         /// <param name="expectedValue">The expected value of the answer cell</param>
         /// <param name="epsilon">The tolerance range for the input. See the decimal result for a detailed description</param>
+        protected void AddDecimalSolution(int row, int column, double expectedValue, decimal epsilon = 0)
+        {
+            AddDecimalSolution(row, column, Convert.ToDecimal(expectedValue), epsilon);
+        }
+
+        /// <summary>
+        /// Add a decimal solution to the answer cell. Round the expected value to a given amount of digits. The epsilon is calculated accordingly.
+        /// </summary>
+        /// <param name="row">The row of the answer cell</param>
+        /// <param name="column">The column of the answer cell</param>
+        /// <param name="expectedValue">The expected value of the answer cell</param>
+        /// <param name="digits">The amount of digits which are expected behind the comma. The epsilon for a 3 digits is 0.0005.</param>
+        protected void AddRoundedDecimalSolution(int row, int column, double expectedValue, int digits = 3)
+        {
+            AddRoundedDecimalSolution(row, column, Convert.ToDecimal(expectedValue), digits);
+        }
+
+        /// <summary>
+        /// Add a decimal solution to the answer cell. Round the expected value to a given amount of digits. The epsilon is calculated accordingly.
+        /// </summary>
+        /// <param name="row">The row of the answer cell</param>
+        /// <param name="column">The column of the answer cell</param>
+        /// <param name="expectedValue">The expected value of the answer cell</param>
+        /// <param name="digits">The amount of digits which are expected behind the comma. The epsilon for a 3 digits is 0.0005.</param>
+        protected void AddRoundedDecimalSolution(int row, int column, decimal expectedValue, int digits = 3)
+        {
+            expectedValue = Math.Round(expectedValue, digits);
+            decimal epsilon = Convert.ToDecimal(Math.Pow(10, -digits) * 0.5);
+            AddDecimalSolution(row, column, expectedValue, epsilon);
+        }
+
+        /// <summary>
+        /// Add a decimal solution to the answer cell. It also accepts empty answer cells.
+        /// </summary>
+        /// <param name="row">The row of the answer cell</param>
+        /// <param name="column">The column of the answer cell</param>
+        /// <param name="expectedValue">The expected value of the answer cell</param>
+        /// <param name="epsilon">The tolerance range for the input. See the decimal result for a detailed description</param>
         protected void AddDecimalOrNullSolution(int row, int column, decimal? expectedValue, decimal epsilon = 0)
         {
             IResult result = new DecimalOrNullResult(expectedValue, epsilon);
             AddSolution(result, row, column);
+        }
+
+        /// <summary>
+        /// Add a decimal solution to the answer cell. It also accepts empty answer cells.
+        /// </summary>
+        /// <param name="row">The row of the answer cell</param>
+        /// <param name="column">The column of the answer cell</param>
+        /// <param name="expectedValue">The expected value of the answer cell</param>
+        /// <param name="epsilon">The tolerance range for the input. See the decimal result for a detailed description</param>
+        protected void AddDecimalOrNullSolution(int row, int column, double? expectedValue, decimal epsilon = 0)
+        {
+            decimal? converted;
+            if (expectedValue.HasValue)
+            {
+                converted = Convert.ToDecimal(expectedValue);
+            }
+            else converted = null;
+
+            AddDecimalOrNullSolution(row, column, converted, epsilon);
         }
 
         /// <summary>

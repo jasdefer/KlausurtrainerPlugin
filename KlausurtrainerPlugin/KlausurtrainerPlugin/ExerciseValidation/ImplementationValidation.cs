@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KlausurtrainerPlugin.Enum;
+using System;
 using System.Collections.Generic;
 
 namespace KlausurtrainerPlugin.ExerciseValidation
@@ -76,7 +77,8 @@ namespace KlausurtrainerPlugin.ExerciseValidation
             //Check if there is a solution for each answer cell
             foreach (var answerCell in answerCells)
             {
-                if (!solutions.ContainsKey(answerCell.Key))
+                if (answerCell.Value.InputType!= InputTypes.Label &&
+                    !solutions.ContainsKey(answerCell.Key))
                 {
                     return $"{exercise.Name}: The answer cell {answerCell.Key} is not part of the solution.";
                 }
