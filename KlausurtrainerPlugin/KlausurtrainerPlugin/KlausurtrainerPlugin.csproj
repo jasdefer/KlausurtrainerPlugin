@@ -7,8 +7,9 @@
     <Description>This project contains interfaces, basic implementations and general definitions used for the Klausurtrainer.</Description>
     <PackageProjectUrl>https://github.com/jasdefer/KlausurtrainerPlugin</PackageProjectUrl>
     <NeutralLanguage>en</NeutralLanguage>
-    <Version>1.0.7.3</Version>
-    <PackageReleaseNotes>Fixed the ambiguity for decimal or null solutions</PackageReleaseNotes>
+    <Version>1.0.8</Version>
+    <PackageReleaseNotes>The seed ignores the case now.
+Rounding works as expected now.</PackageReleaseNotes>
   <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
   </PropertyGroup>
 
