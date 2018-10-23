@@ -19,7 +19,6 @@ namespace KlausurtrainerPlugin
         /// </summary>
         public abstract string FileName { get; }
 
-
         /// <summary>
         /// The chapter of this exercise in the course. The chapters are ordered alphabetically.
         /// </summary>
@@ -116,7 +115,7 @@ namespace KlausurtrainerPlugin
         /// <param name="seed"></param>
         public void Instantiate(string seed)
         {
-            Rnd = new Random(Hash(seed));
+            Rnd = new Random(Hash(seed.ToLowerInvariant()));
             AnswerCells = new Dictionary<Cell, AnswerCell>();
             Solutions = new Dictionary<Cell, IResult>();
             SetValues();
@@ -324,7 +323,7 @@ namespace KlausurtrainerPlugin
         /// <param name="digits">The amount of digits which are expected behind the comma. The epsilon for a 3 digits is 0.0005.</param>
         protected void AddRoundedDecimalSolution(int row, int column, decimal expectedValue, int digits = 3)
         {
-            expectedValue = Math.Round(expectedValue, digits);
+            expectedValue = Math.Round(expectedValue, digits, MidpointRounding.AwayFromZero);
             decimal epsilon = Convert.ToDecimal(Math.Pow(10, -digits) * 0.5);
             AddDecimalSolution(row, column, expectedValue, epsilon);
         }
