@@ -115,7 +115,7 @@ namespace KlausurtrainerPlugin
         /// <param name="seed"></param>
         public void Instantiate(string seed)
         {
-            Rnd = new Random(Hash(seed));
+            Rnd = new Random(Hash(seed.ToLowerInvariant()));
             AnswerCells = new Dictionary<Cell, AnswerCell>();
             Solutions = new Dictionary<Cell, IResult>();
             SetValues();
