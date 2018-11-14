@@ -10,7 +10,7 @@ namespace KlausurtrainerPlugin.DefaultResults
 
         public string GetSolution()
         {
-            return Expected?.ToString();
+            return Expected==null?string.Empty: Expected.ToString();
         }
 
         /// <summary>
@@ -48,6 +48,10 @@ namespace KlausurtrainerPlugin.DefaultResults
                         return AnswerCellStatus.Incorrect;
                     }
                 }
+            }
+            else if (string.IsNullOrEmpty(input))
+            {
+                return AnswerCellStatus.Incorrect;
             }
             else
             {

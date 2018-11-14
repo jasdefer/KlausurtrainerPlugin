@@ -20,14 +20,14 @@ namespace KlausurtrainerPlugin.DefaultResults
 
         public string GetSolution()
         {
-            return Expected;
+            return Expected==null?string.Empty:Expected;
         }
 
         public AnswerCellStatus Validate(string input)
         {
             if (Expected == null)
             {
-                if (input == null)
+                if (string.IsNullOrEmpty(input))
                 {
                     return AnswerCellStatus.Correct;
                 }
