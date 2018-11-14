@@ -26,7 +26,7 @@ namespace KlausurtrainerPlugin.DefaultResults
         public AnswerCellStatus Validate(string input)
         {
             //Check for missing input
-            if (input == null)
+            if (string.IsNullOrEmpty(input))
             {
                 return AnswerCellStatus.Missing;
             }

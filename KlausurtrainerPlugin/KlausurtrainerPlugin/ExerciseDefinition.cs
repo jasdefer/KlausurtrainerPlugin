@@ -397,20 +397,5 @@ namespace KlausurtrainerPlugin
             IResult result = new TrueOrFalseResult(expectedValue);
             AddSolution(result, row, column);
         }
-
-        /// <summary>
-        /// Add a fraction result. If the answer cell is defined as a fraction the solution must be a fraction as well.
-        /// </summary>
-        /// <param name="row">The row of the answer cell</param>
-        /// <param name="column">The column of the answer cell</param>
-        /// <param name="expectedValue">The expected value of the answer cell</param>
-        /// <param name="denominator">For displaying the correct solution. Has no effect on the validation</param>
-        /// <param name="numerator">For displaying the correct solution. Has no effect on the validation</param>
-        /// <param name="epsilon">The input is correct as long as the difference between the input and expected value is not greater than this epsilon</param>
-        protected void AddFractionSolution(int row, int column, decimal expectedValue, decimal epsilon = 0.01m, int? numerator = null, int? denominator = null)
-        {
-            IResult result = new FractionResult(expectedValue, epsilon, numerator, denominator);
-            AddSolution(result, row, column);
-        }
     }
 }
