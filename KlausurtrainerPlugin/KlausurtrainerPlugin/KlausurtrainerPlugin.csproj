@@ -7,9 +7,9 @@
     <Description>This project contains interfaces, basic implementations and general definitions used for the Klausurtrainer.</Description>
     <PackageProjectUrl>https://github.com/jasdefer/KlausurtrainerPlugin</PackageProjectUrl>
     <NeutralLanguage>en</NeutralLanguage>
-    <Version>1.0.8</Version>
-    <PackageReleaseNotes>The seed ignores the case now.
-Rounding works as expected now.</PackageReleaseNotes>
+    <Version>1.0.9</Version>
+    <PackageReleaseNotes>Null results handle null and empty string inputs correctly.
+Removed fraction result, since it is not supported anymore.</PackageReleaseNotes>
   <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
   </PropertyGroup>
 
